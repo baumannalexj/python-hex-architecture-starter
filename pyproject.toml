@@ -1,0 +1,10 @@
+[project]
+name = "python-hex-architecture-starter"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[dependency-groups]
+dev = ["ruff>=0.4"]
