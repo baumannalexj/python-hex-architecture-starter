@@ -19,7 +19,7 @@ def mock_event_client():
 @pytest.fixture(autouse=True)
 def item_service(mock_item_repository, mock_event_client):
     return ItemService(
-        _item_repository=mock_item_repository, _event_client=mock_event_client
+        item_repository=mock_item_repository, event_client=mock_event_client
     )
 
 

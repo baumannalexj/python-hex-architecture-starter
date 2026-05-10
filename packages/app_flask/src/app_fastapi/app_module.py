@@ -21,7 +21,7 @@ class FastApiAppModule(AppModule):
             region=Settings().aws_region,
         )
         item_service = ItemService(
-            _item_repository=item_repository, _event_client=event_client
+            item_repository=item_repository, event_client=event_client
         )
 
         self.item_router = ItemRouter(item_service)

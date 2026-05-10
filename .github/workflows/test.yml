@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: sync
+        run: uv sync --all-packages --all-groups
+
+      - name: test
+        run: uv run pytest packages/core/tests packages/repository/tests packages/clients/tests packages/app_flask/tests -v
