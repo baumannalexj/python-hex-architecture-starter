@@ -1,16 +1,18 @@
+from dataclasses import dataclass
+
 from fastapi import HTTPException
 from pydantic import BaseModel
 
-from core.service import ItemService
+from core.item_service import ItemService
 
 
 class CreateItemRequest(BaseModel):
     name: str
 
 
+@dataclass
 class ItemRouter:
-    def __init__(self, item_service: ItemService) -> None:
-        self._item_service = item_service
+    _item_service: ItemService
 
     def get_item(self, item_id: str):
         item = self._item_service.get_item(item_id)

@@ -1,14 +1,15 @@
-from pydantic.dataclasses import dataclass
+from dataclasses import dataclass
 from .domain import Item
-from .ports import ItemRepository, EventClient
+from .ports import ItemRepository, IEventClient
+
 
 @dataclass
 class ItemService:
     _item_repository: ItemRepository
-    _event_client: EventClient
+    _event_client: IEventClient
 
     def get_item(self, item_id: str) -> Item | None:
-        return self._item_repository.get(item_id)
+        return self._item_repository.get_by_id(item_id)
 
     def create_item(self, name: str) -> Item:
         item = Item(name=name)
